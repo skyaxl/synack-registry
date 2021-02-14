@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "prod",
+            "database": "${workspaceFolder:synack-registry}/db/prod.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

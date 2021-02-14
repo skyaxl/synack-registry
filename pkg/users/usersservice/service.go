@@ -16,6 +16,11 @@ type Service struct {
 	db boil.ContextExecutor
 }
 
+//New Service
+func New(db boil.ContextExecutor) *Service {
+	return &Service{db}
+}
+
 //Save user
 func (svc Service) Save(ctx context.Context, user userscontracts.User) (err error) {
 	userD := models.User{

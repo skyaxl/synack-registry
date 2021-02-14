@@ -9,15 +9,17 @@ import (
 	"github.com/skyaxl/synack-registry/pkg/users/userscontracts"
 )
 
+//Users handler
 type UsersHandler struct {
 	service userscontracts.UserService
 }
 
-func (h *UsersHandler) Bind(router echo.Echo) {
+//Bind controller
+func (h *UsersHandler) Bind(router *echo.Echo) {
 	router.GET("/users/:username", h.GET)
 	router.POST("/users", h.POST)
 	router.PUT("/users/:username", h.PUT)
-	router.GET("/users/:username", h.DELETE)
+	router.DELETE("/users/:username", h.DELETE)
 
 }
 
@@ -49,7 +51,7 @@ func (h *UsersHandler) POST(c echo.Context) error {
 	return nil
 }
 
-//PUT
+//PUT change info
 func (h *UsersHandler) PUT(c echo.Context) error {
 	ctx := c.Request().Context()
 	username := c.Param("username")

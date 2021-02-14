@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/friendsofgo/errors v0.9.2
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
+	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/kataras/golog v0.1.6
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/gommon v0.3.0 // indirect
