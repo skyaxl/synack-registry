@@ -3,6 +3,7 @@ module github.com/skyaxl/synack-registry
 go 1.15
 
 require (
+	github.com/deepmap/oapi-codegen v1.5.1 // indirect
 	github.com/friendsofgo/errors v0.9.2
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gofrs/uuid v3.2.0+incompatible

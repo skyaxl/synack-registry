@@ -1,0 +1,135 @@
+openapi: "3.0.3"
+info:
+  title: Synack Registry
+  description: "Register informations"
+  version: 1.0.0
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+    FullUser:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+    Registry:
+      type: object
+      properties:
+        username:
+          type: string
+        dump_req:
+          type: string
+        dump_res:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+  responses:
+    default:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+security:
+- BasicAuth: []
+paths:
+  "/users":
+    post:
+        tags: ["users"]
+        operationId: createuser
+        summary: "Create User"
+        requestBody:
+          content:
+            application/json:
+                  schema:
+                    $ref: '#/components/schemas/FullUser'
+        responses:
+          '200':
+            description: |-
+              200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/User'
+  "/users/{username}":
+    parameters:
+      -   name: username
+          in: path
+          required: true
+          schema:
+            type: "string"
+    get:
+      tags: ["users"]
+      operationId: getuser
+      summary: "Get User"
+      responses:
+        '200':
+          description: |-
+            200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags: ["users"]
+      operationId: putuser
+      summary: "Change User"
+      requestBody:
+        content:
+          application/json:
+                schema:
+                  $ref: '#/components/schemas/FullUser'
+      responses:
+        '200':
+          description: |-
+            200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags: ["users"]
+      operationId: deleteuser
+      summary: "Get User"
+      responses:
+        '200':
+          description: |-
+            200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  "/reg":
+    post:
+        tags: ["Registries"]
+        operationId: reg
+        summary: "Registry"
+        requestBody:
+          content:
+            application/json:
+                  schema:
+                    $ref: '#/components/schemas/Registry'
+        responses:
+          '200':
+            description: |-
+              200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Registry'
