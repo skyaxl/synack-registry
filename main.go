@@ -13,6 +13,7 @@ import (
 func main() {
 	errs := make(chan error, 2)
 	go func() {
+		golog.Infof("[Registry Api] Starting \n")
 		errs <- api.New()
 	}()
 	go func() {

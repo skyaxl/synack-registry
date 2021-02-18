@@ -24,8 +24,20 @@ func New() (err error) {
 	svc := userservice.New(db)
 	regService := regsservice.New(db)
 	e := echo.New()
+	e.GET("/ping", func(c echo.Context) error {
+		c.String(200, "PONG")
+		return nil
+	})
 	authMid := AuthHandler{svc}
-	e.Use(middleware.BasicAuth(authMid.Middleware))
+	e.Use(middleware.BasicAuthWithConfig(middleware.BasicAuthConfig{
+		Validator: authMid.Middleware,
+		Skipper: func(c echo.Context) bool {
+			if c.Request().URL.Path == "/ping" {
+				return true
+			}
+			return false
+		},
+	}))
 	userHandler := &UsersHandler{svc}
 	userHandler.Bind(e)
 

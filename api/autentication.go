@@ -27,5 +27,5 @@ func (ah *AuthHandler) Middleware(username, password string, c echo.Context) (bo
 	if apiError, ok = err.(apierrors.ApiError); !ok {
 		apiError = apierrors.ErrInternalServerError
 	}
-	return true, apiError
+	return false, apiError
 }
